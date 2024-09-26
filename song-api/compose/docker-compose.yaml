@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: song_library_db
+    environment:
+      POSTGRES_USER: song_user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: songdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - song_library_network
+
+volumes:
+  postgres_data:
+
+networks:
+  song_library_network:
+    driver: bridge
